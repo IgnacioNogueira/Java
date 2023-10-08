@@ -1,10 +1,25 @@
 package jueguito0509;
 
-public abstract class Transporte extends Contenedor {
+import java.util.List;
 
-	public Transporte(int hp, String nombre, String equipo, Punto ubicacion, int cuposTotales, int cuposDisponibles)
+public abstract class Transporte extends Contenedor {
+	
+	protected int distanciaRecorrida;
+	
+	
+	public Transporte(int hp, String nombre, String equipo, Punto ubicacion, int cuposTotales)
 			throws Exception {
-		super(hp, nombre, equipo, ubicacion, cuposTotales, cuposDisponibles);
+		super(hp, nombre, equipo, ubicacion, cuposTotales);
+		this.distanciaRecorrida = 0;
 	}
+	
+	protected abstract void subirPersonas(int cantKilometros, List <Persona> personas);
+	
+	protected void finalizarViaje(int cantKilometros) {
+		this.distanciaRecorrida+=cantKilometros;
+		
+		
+	}
+	
 
 }

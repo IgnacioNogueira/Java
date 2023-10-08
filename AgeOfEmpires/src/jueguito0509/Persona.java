@@ -1,6 +1,6 @@
 package jueguito0509;
 
-public abstract class Persona extends UnidadBase {
+public abstract class Persona extends Unidad {
 
 	protected int monedasOro;
 

@@ -22,20 +22,36 @@ public abstract class Guerrero extends Persona {
 
 	@Override
 	public void recibirDanio(int danio) {
-
 		if (!this.sigueEnPie()) {
 			return;
 		}
 
-		double difDanioRecibido = this.armor - danio;
+		int difDanioRecibido = this.armor - danio;
 
 		if (difDanioRecibido >= 0) {
 			this.armor -= danio;
 		} else {
-			Math.max(this.hp - difDanioRecibido, 0);
 			this.armor = 0;
+			this.hp = Math.max(this.hp - Math.abs(difDanioRecibido), 0);
 		}
 	}
 
-	protected abstract void atacar(UnidadBase otro);
+	protected void gastarStamina(int cantEstamina) {
+		if (cantEstamina <= this.stamina) {
+			this.stamina = Math.max(this.stamina - cantEstamina, 0);
+		}
+	}
+
+	protected void recuperarStamina(int cantEstamina, int cantMaxPermitido) {
+		if (cantMaxPermitido <= cantEstamina) {
+			if (this.stamina > 0) {
+				int cantARecargar = cantEstamina - this.stamina;
+				this.stamina += cantARecargar;
+			} else {
+				this.stamina = cantEstamina;
+			}
+		}
+	}
+
+	protected abstract void atacar(Unidad otro);
 }
