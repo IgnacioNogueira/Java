@@ -8,7 +8,7 @@ public class Circulo extends Figura {
 		this.radio = validarAtributosFigura(radio,
 				"Por favor, revise que el radio del Circulo " + this.nombre + " sea mayor o menor que cero centimetros");
 	}
-
+	
 	@Override
 	public double calcularArea() {
 		return Math.PI * (this.radio * this.radio);

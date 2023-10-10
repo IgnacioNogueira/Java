@@ -23,10 +23,10 @@ public class CirculoTests {
 
 	private Circulo c5;
 	private Punto p5;
-	
+
 	private Circulo c6;
 	private Punto p6;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		c1 = new Circulo(1, "Ventana 1", "Blanco", p1 = new Punto(1, 1));

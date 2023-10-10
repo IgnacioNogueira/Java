@@ -36,26 +36,9 @@ public class GrupoFiguras extends Figura {
 		return totalArea;
 	}
 
-	// Esto no está pedido en el enunciado, pero como para abrir más el panoráma y
-	// las posibilidades
-	// quiero pintar todas las figuras de un solo color
-
-	// 1 - Pueden estar una encima de la otra (X e Y iguales)
-	// 2 - Tendría que conectar con X (Podría cooncidir con X O Y)
-	// 3 - Si no coincide con ninguna, error <!>
-
-	private boolean grupoDeFigurasSeSolapan() {
-		for (int i = 0; i < listaFiguras.size(); ++i) {
-			if (!listaFiguras.get(i).figurasSeSolapan(listaFiguras.get(i + 1))) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 	public void pintarGrupo(String color) throws Exception {
 
-		if (!listaFiguras.isEmpty() && grupoDeFigurasSeSolapan()) {
+		if (!listaFiguras.isEmpty()) {
 			for (Figura f : listaFiguras) {
 				f.pintar(color);
 			}
