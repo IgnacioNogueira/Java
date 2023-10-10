@@ -3,13 +3,13 @@ package edu.unlam.paradigmas.composite;
 public class Cuadrado extends Figura {
 	private double lado;
 
-	public Cuadrado(int lado, String nombre, String color) {
-		super(nombre, color);
-		this.lado = lado;
+	public Cuadrado(int lado, String nombre, String color,Punto ubicacion) throws Exception {
+		super(nombre, color, ubicacion);
+		this.lado = validarAtributosFigura(lado,"Por favor, revise que el lado del cuadrado " + this.nombre + " sea mayor o menor que cero centimetros");
 	}
 
 	@Override
-	protected double calcularArea() {
+	public double calcularArea() {
 		return lado * lado;
 	}
 

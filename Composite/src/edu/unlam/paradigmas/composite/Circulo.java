@@ -3,13 +3,14 @@ package edu.unlam.paradigmas.composite;
 public class Circulo extends Figura {
 	private double radio;
 
-	public Circulo(int radio, String nombre, String color) {
-		super(nombre, color);
-		this.radio = radio;
+	public Circulo(double radio, String nombre, String color, Punto ubicacion) throws Exception {
+		super(nombre, color, ubicacion);
+		this.radio = validarAtributosFigura(radio,
+				"Por favor, revise que el radio del Circulo " + this.nombre + " sea mayor o menor que cero centimetros");
 	}
 
 	@Override
-	protected double calcularArea() {
+	public double calcularArea() {
 		return Math.PI * (this.radio * this.radio);
 	}
 
@@ -17,5 +18,4 @@ public class Circulo extends Figura {
 	public String toString() {
 		return "Circulo: " + this.getNombre();
 	}
-	
 }

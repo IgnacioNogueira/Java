@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class GrupoFiguras extends Figura {
 	private ArrayList<Figura> listaFiguras;
 
-	public GrupoFiguras(String nombre, String color, ArrayList<Figura> figuras) {
-		super(nombre, color);
+	public GrupoFiguras(String nombre, ArrayList<Figura> figuras, Punto ubicacion) throws Exception {
+		super(nombre, "", ubicacion); // cómo podría validar que no se le pase un color en particular (cada figura
+										// tiene su color)
 		agregar(figuras);
 	}
 
@@ -22,7 +23,7 @@ public class GrupoFiguras extends Figura {
 	}
 
 	@Override
-	protected double calcularArea() throws Exception {
+	public double calcularArea() throws Exception {
 		if (listaFiguras.isEmpty()) {
 			throw new Exception("No se puede calcular el area de una casa sin figuras");
 		}
@@ -35,18 +36,31 @@ public class GrupoFiguras extends Figura {
 		return totalArea;
 	}
 
-	public void pintarGrupo(Pomo pomo) throws Exception {
+	// Esto no está pedido en el enunciado, pero como para abrir más el panoráma y
+	// las posibilidades
+	// quiero pintar todas las figuras de un solo color
 
-		if (!listaFiguras.isEmpty() && !pomo.estaVacio()) {
-			for (Figura f : listaFiguras) {
-				f.pintar(pomo);
+	// 1 - Pueden estar una encima de la otra (X e Y iguales)
+	// 2 - Tendría que conectar con X (Podría cooncidir con X O Y)
+	// 3 - Si no coincide con ninguna, error <!>
+
+	private boolean grupoDeFigurasSeSolapan() {
+		for (int i = 0; i < listaFiguras.size(); ++i) {
+			if (!listaFiguras.get(i).figurasSeSolapan(listaFiguras.get(i + 1))) {
+				return false;
 			}
-		} else {
-			throw new Exception("No se puede pintar, si no dispone de las figuras para armarla");
 		}
+		return true;
 	}
 
-	public int calcularCantPomos() throws Exception {
-		return (int) ((calcularArea() + Pomo.CAPACIDAD_TOTAL - 1) / Pomo.CAPACIDAD_TOTAL);
+	public void pintarGrupo(String color) throws Exception {
+
+		if (!listaFiguras.isEmpty() && grupoDeFigurasSeSolapan()) {
+			for (Figura f : listaFiguras) {
+				f.pintar(color);
+			}
+		} else {
+			throw new Exception("No se puede pintar el conjunto de figuras que forma " + this.nombre);
+		}
 	}
 }
