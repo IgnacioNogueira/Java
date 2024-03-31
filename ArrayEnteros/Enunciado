@@ -1,4 +1,0 @@
-Dado un array con varios números enteros, determinar aquellos dos que tengan el mismo MCD, y cuyo MCD sea el mayor que se pueda encontrar entre todos los MCD de parejas de números del array. Ejemplo: `[24, 36, 45, 75, 91] -> [45, 75]`
-Al menos hay una dupla que cumple la condición.
-
-Recuerden que solamente deben hacer aquella que consideren que pueden resolver. Y por supuesto, probarla.
