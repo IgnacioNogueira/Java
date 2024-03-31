@@ -1,0 +1,27 @@
+Paradigma Imperativo - Orientado a Objetos - Java
+1. Teórico
+	a. Compare y contraste los conceptos de polimorfismo y sobrecarga de métodos en la programación orientada a
+	   objetos.
+	   
+	   Comparaciones:
+	   - El polimorfismo y la sobrecarga permite la reutilización y modularización del código. Esto permite la flexibilidad y extensibilidad del diseño del software
+	   - Ambos tratan de implementar un cambio de comportamiento del método/entidad definidos previamente.
+	   
+	   Diferencias:
+	   - En el polimorfismo se respeta la declaración del método en la Clase Maestra (firma del método y sus parámetros),
+	   mientras que en la sobrecarga se pueden tener varias versiones del mismo método. Si bien va a respetar la firma, pero se pueden pasar diferentes parámetros para darle utilidad a un nuevo comportamiento 
+	   
+	   - El polimorfismo permite que un objeto se comporte de maneras diferentes según el contexto, mientras que una sobrecarga no se
+   	     cambia el comportamiento en base al contexto. La sobrecarga permite tener varias versiones de un método de una misma clase
+	     ,en una instancia 
+		 
+	   - El polimorfismo está relacionado con la herencia y la capacidad de una
+     	 clase derivada de ser tratada como su clase base, mientras que la sobrecarga
+		 de métodos se basa en la firma del método y la selección del método adecuado 
+		 se realiza en función de la mejor coincidencia de parámetros.
+
+	   
+	b. Explique en qué situaciones es apropiado utilizar uno u otro en el diseño de un sistema
+	
+	El polimorfismo se utiliza para cambiar el comportamiento de los métodos según el tipo real del objeto en tiempo de ejecución, lo que permite tratar objetos de diferentes clases de manera uniforme.
+	La sobrecarga de métodos se utiliza para proporcionar diferentes versiones del mismo método con diferentes parámetros, sin cambiar el comportamiento fundamental del método. 

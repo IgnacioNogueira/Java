@@ -1,0 +1,165 @@
+Java) 
+
+1) diferencias entre herencia y composicion, ejemplos
+
+Las diferencias entre Herencia y composicion son las siguientes:
+
+1. La más sencilla que Composite es un patrón de diseño y herencia es un concepto fundamental de POO
+2. La herencia establece "es-un", mientras que el Composite quiere jerarquizar las clases presentes en el patrón con un "es-parte-todo"
+3. La herencia permite la reutilización del código y la extensibilidad de funcionalidad, mientras que composite proporciona una forma de trabajar de manera individual y particular en cada clase.
+
+2) UML de Biblioteca representando Libro, Autor y Categoría minimamente. 
+
+https://quickshare.samsungcloud.com/contents/view?contentsToken=1687873831893LsFGd0y&currentIndex=1&linkUrlVersion=V1
+
+Mostrar en codigo metodos de prestar y devolver libros
+
+
+public interface Biblioteca{
+
+	public void prestar();
+	public void devolver();
+}
+
+
+Public class Libro implements Biblioteca {
+
+private String nombre;
+private Autor autor;
+Private Categoria categoría;
+Private boolean prestado;
+Private int cantCopias;
+
+public Libro(String nombre, Autor autor, Categoria categoria, int copias)
+{
+	this.nombre = nombre;
+	this.autor = autor;
+	this.categoria = categoria;
+	this.prestado = false;
+	this.cantCopias = copias;
+}
+
+
+@Override
+public void prestar() throws LibroException{
+
+	if(prestado){
+		System.out.println("\nEste libro esta prestado, lo lamentamos!");
+	}else{
+	
+		if(cantCopias > 0){
+		this.cantCopias--;
+		this.prestado = true;
+		System.out.println("El libro: " + this.nombre + "se prestó y tiene ahora: " + this.cantCopias);
+		}else{
+			throw new LibroException("No podemos prestar el libro " + this.nombre + "debido a que no nos quedan copia. Por favor, vuelva prontos");
+		}
+	}
+}
+
+@Override
+public void devolver(){
+
+	if(prestado){
+		this.cantCopias++;
+		this.prestado = false;
+		System.out.println("El libro: " + this.nombre + "se devolvió a la biblioteca. ¡Muchas gracias!");
+	}else{
+		System.out.println("No puede devolver un libro que no está prestado :)");
+	}
+}
+
+
+public class LibroException extends Exception{
+	private static final long serialVersionUID = 132132131315;
+	
+	public LibroException(String mensaje){
+		super(mensaje);
+	}
+	
+
+}
+
+
+}
+
+
+
+Prolog) 
+
+1) definir producto cartesiano
+
+El producto cartesiano se genera cuando en una regla se defineN dos hechos de la siguiente manera:
+
+ProductoCartesiano(A,B):- Nota(A,_),
+						  Nota(B,_).
+						  
+Como las variables son distintas (no están relacionadas), en base a un dominio en particular,se estará realizando el producto cartesiano entre Nota1 y Nota2 para devolver el conjunto de valores que se realizaron mediante la acción "fila por columna"
+
+
+-PARA intersección:
+
+Interseccion(A):- Nota(A,_),
+				  Nota(A,_).
+
+Union(A):- Nota(A,_);
+		   Nota(A,_).
+
+
+2) base d conocimientos d libros con nombre autor genero y calificacion.
+libros(cien_años, gabriel, realismo, 9.5).
+libros(1984, george, ciencia, 8.7).
+libros(gatsby, fitzgerald, ficción, 8.2).
+
+Hacer las consultas:
+
+a) obtener_libros_genero(Libro,Genero)
+ 
+ obtener_libros_genero(Libro,Genero):-
+                                     libros(Libro,_,Genero,_).
+ 
+b) obtener_con_mas_calif(Libro, CalifBase) -- max
+ 
+productoCartesiano(A,B):-
+				libros(_,_,_,A),
+				libros(_,_,_,B).
+
+seleccion(A,B):-
+			productoCartesiano(A,B),
+			A < B.
+
+proyeccionLibro(A):-
+				seleccion(A,_).
+				
+todos_menos_max(A):-
+				proyeccionLibro(A).
+				
+obtener_con_mas_calif(Libro, CalifBase):-
+					libros(Libro,_,_,CalifBase),
+					\+todos_menos_max(CalifBase).
+
+ 
+ Haskell)
+1) definir recursividad
+La recursividad en Haskell se define con una función definida en partes. Para que sea una función recursiva debe cumplir:
+- Condición de corte
+- Regla de reducción.
+
+Ej:
+sumatoria:: Int -> Int
+sumatoria 0 = 0
+sumatoria x = x + sumatoria(x-1)
+
+2) definir una funcion que haga la resta de la sumatoria de dos listas ( [1,2,3] y [1,4] devuelve 1 )
+
+sumatoriaLista :: Num a => [a] -> a
+sumatoriaLista [] = 0
+sumatoriaLista [x] = x
+sumatoriaLista (x:xs) = x + sumatoriaLista xs
+
+restaSumatoriaListas :: Num a => [a] -> [a] -> a
+restaSumatoriaListas x y = sumatoriaLista x - sumatoriaLista y
+
+main :: IO ()
+main = do
+  print (restaSumatoriaListas [] [1,4])

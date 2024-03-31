@@ -1,0 +1,124 @@
+1) a) Describa concepto de mensajes en la programactón orientada a objetos y cómo se relaciona con la
+comunicación entre objetos
+
+El concepto de mensajes en el contexto de programación orientado a objetos, elude a que puedo "llamar" a una instancia de
+un objeto, para obtener un resultado. La relación se da, mediante una secuencia lógica de código, que hace que se desencadene una acción dentro de dicha entidad para 
+obtener el resultado buscado a través de métodos de la misma.
+
+
+b) ¿En se diferencia un mensaje de un método?
+
+La diferencia radica en que un mensaje es la invocación de una instancia de un objeto (Como lo puede ser un método),
+ y el método es una secuencia lógica y estructura de código con un nombre, en el que puede ser llamada para desenvolver algún acontecimiento mediante una invocación (las llamadas)-  
+
+
+2) a) Diseñar el sistema de un campus universitario. Crear clases para representar estudiantes
+profesores y asignaturas. Debe disponer de funcionalidades para el registro de estudiantes en asignaturas y el cálculo de calificaciones
+
+
+{diagrama}
+
+
+b) El código fuente de esos dos método. Recordar colocar todos los parámetros necesarios
+
+private void registrarEstudiantes(Estudiante e) throws AsignaturaException{
+
+	if(this.cupoDispoble > 0){
+		this.cupoDisponible--;
+		listaEstudiante.add(e);
+		
+	}
+	else{
+		throw new AsignaturaException("No se puede registrar, cupo de la materia lleno");
+	}
+}
+
+
+private void calculoCalificaciones() throws AsignaturaException{
+
+	if(calificaciones.isEmpty()){
+		throw new AsignaturaException("\nNo se pueden calcular las calificaciones, debido a que no hay alumnos asignados a la materia);
+	}
+	
+	int totalEstudiantes = calificaciones.size();
+	double sumaCalif = 0;
+	
+	for(double c: calificaciones.values()){
+		sumaCalif+=c;
+	}
+		
+	return sumaCalif / totalEstudiantes;
+}
+
+3) Explicar en prolog el concepto de variable anóninma, ¿En qué se diferencia de una vanabie convencional? ¿En qué casos es apropiado utilizar este tipo de variable?
+
+El concepto de variable anóninma en prolog, hace referencia a la utilización del caracter '_' dentro de una regla de prolog. 
+La variable nos ayuda a "filtrar" columnas, del predicado que "se conecte" con los datos que existen dentro de la base de conocimientos de prolog. 
+
+La diferencia con una variable convencional es que podemos recurrir al concepto de variable libre o ligada. Si bien todas las variables comienzan libres, pero lo que lo
+diferencian es que:
+
+- Una variable ligada contiene un valor explícito como puede ser 1,2,3. Ej: suma(1,2,3) -> dentro de este predicado, están incluidas todas variables ligadas a un valor
+- Una variable libre no contiene un valor. Ej: viaje(CIUDAD,PAIS,PRECIO). Con este ejemplo podríamos llamar a todos los valores que puede contener la base de conocimientos de prolog para mostrar
+las tablas de valores de los viajes que podemos hacer a la ciudad de un país, con un precio en particular.
+
+El uso de la variable es apropiado utilizarlo por ejemplo en funciones recursivas, debido a que no ocupan espacio en memoria,
+ y a la hora de ejecutar una regla, se reduce el esfuerzo de la memoria.
+
+
+
+4) Práctico
+
+a) Diseñar una de conocimientos en Prolog con información sobre temperaturas mínimas y máximas, discriminando por ciudad y dia de la semana. Pueden existir duplicados
+
+b) Luego, implementar una regla principal en Prolog llamada máxima temperatura promedio que tiene como parámertos la máxima temperatura promedio y la ciudad.
+ Para ello armar una regla intermedia que calcule promedio de la temp mínima de la base de conocimientos
+
+
+Paradigma funcional - Haskell 
+
+5) Explicar el concepto de "Pattern matching" en Haskell y cómo se utiliza. Proporcionar un ejemplo
+
+6) Práctico
+Implementar una función en Haskell que reciba dos listas del mismo tamaña y calcule la potencia del elemento de la primera lista, 
+elevado el elemento de la segunda lista. Debe retornar una lista de tuplas con los tres elementos.
+
+Es una técnica que permite descomponer y comparar patrones en datos estructurados. 
+Se utiliza para realizar diferentes acciones o tomar decisiones según los patrones encontrados en los valores de entrada.
+
+quitaTres :: [a] -> [a]
+quitaTres (_:_:_:xs) = xs
+quitaTres _          = []
+
+quitaTres [1,2,3,4,5]
+
+Resultado: [4,5]
+
+
+
+Utilizar funciones nativas
+
+potenciaListas [2,3,4] [2,2,2] = [ (2,2,4), (3,2,9), (4,2,16) ]
+
+{-
+Implementar una función en Haskell que reciba dos listas del mismo tamaña y calcule la potencia del elemento de la primera lista, elevado el elemento de la segunda lista. Debe retornar una lista de tuplas con los tres elementos.
+
+Utilizar funciones nativas
+
+potenciaListas [2,3,4] [2,2,2] = [ (2,2,4), (3,2,9), (4,2,16) ]
+-}
+
+potenciaListas :: [Int] -> [Int] -> [(Int, Int, Int)]
+potenciaListas [] _ = []
+potenciaListas _ [] = []
+potenciaListas (x:xs) (y:ys) = (x, y, x^y) : potenciaListas xs ys
+
+
+
+main :: IO()
+main = do print (potenciaListas [2,3,4] [2,2,2])
+
+
+
+
+
