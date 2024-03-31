@@ -29,7 +29,7 @@ This repository serves as a comprehensive resource hub, offering a diverse array
 ### Contents 🧑‍🏫👩‍🏫
 1. **Exercises**: Engage in hands-on learning with a plethora of exercises designed to reinforce key concepts.
 2. **Exams**: Test your knowledge and skills with comprehensive exams covering various topics learned throughout the course.
-3. **Subject Proyect**: Explore the subject project, showcasing practical implementations and applications of Java programming paradigms.
+3. **Subject Proyects**: Explore the subjects projects, showcasing practical implementations and applications of Java programming paradigms.
 
 ----------------------------------------------------------------
 
